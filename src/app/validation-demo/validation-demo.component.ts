@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService, Book } from '../service/authentication.service';
 
 @Component({
   selector: 'app-validation-demo',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValidationDemoComponent implements OnInit {
 
-  constructor() { }
+  books: Book[];
+
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.authenticationService.getBooks().
+      then(books => this.books = books);
   }
 
 }
